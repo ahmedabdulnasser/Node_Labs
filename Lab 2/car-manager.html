@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <h2>Car List</h2>
+    <table>
+      <thead>
+        <th>ID</th>
+        <th>Manufacturer</th>
+        <th>Model</th>
+        <th>Color</th>
+      </thead>
+      <tbody id="car-container"></tbody>
+    </table>
+    <form action="/addcar" method="post" id="add-form">
+      <h2>Add Car</h2>
+      <input type="text" placeholder="Manufacturer" name="manufacturer" />
+      <input type="text" placeholder="Model" name="model" />
+      <input type="text" placeholder="Color" name="color" />
+      <button onclick="" id="add-btn">Submit</button>
+    </form>
+
+    <form action="/editcar" method="post" id="edit-form">
+      <h2>Edit Car</h2>
+      <input type="text" placeholder="ID of existing car" name="id" />
+      <input type="text" placeholder="Manufacturer" name="manufacturer" />
+      <input type="text" placeholder="Model" name="model" />
+      <input type="text" placeholder="Color" name="color" />
+      <button onclick="" id="edit-btn">Submit</button>
+    </form>
+
+    <h2>Delete Car</h2>
+    <input type="text" placeholder="Car ID" name="id" id="del-input" />
+    <button onclick="" id="del-btn">Delete</button>
+  </body>
+
+  <script>
+    window.onload = () => {
+      document.getElementById("add-btn").addEventListener("click", addCar);
+      document.getElementById("del-btn").addEventListener("click", deleteCar);
+      document.getElementById("edit-btn").addEventListener("click", editCar);
+
+      async function editCar(e) {
+        e.preventDefault();
+        let formElement = document.getElementById("edit-form");
+        let formData = Object.fromEntries(new FormData(formElement).entries());
+        console.log(formData);
+        Object.keys(formData).forEach((key) => {
+          if (formData[key] == "") {
+            delete formData[key];
+          }
+        });
+        let response = await fetch("/editcar", {
+          method: "POST",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify(formData),
+        });
+        let resBody = await response.json();
+        showCars();
+        alert(resBody.msg);
+      }
+      async function deleteCar(e) {
+        e.preventDefault();
+        let id = document.getElementById("del-input").value;
+        let response = await fetch(`/deletecar?id=${id}`);
+        let resBody = await response.json();
+        showCars();
+        alert(resBody.msg);
+      }
+      async function addCar(e) {
+        e.preventDefault();
+        let formElement = document.getElementById("add-form");
+        let formData = Object.fromEntries(new FormData(formElement).entries());
+        let response = await fetch("/addcar", {
+          method: "POST",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify(formData),
+        });
+        showCars();
+      }
+      async function showCars() {
+        let response = await fetch("/cars");
+        let data = await response.json();
+        let cars = data.map(
+          (car) =>
+            `<tr> <td>${car.id}</td> <td>${car.manufacturer}</td> <td>${car.model}</td> <td>${car.color}</td></tr>`
+        );
+        document.getElementById("car-container").innerHTML = cars.join("");
+      }
+      showCars();
+    };
+  </script>
+</html>
