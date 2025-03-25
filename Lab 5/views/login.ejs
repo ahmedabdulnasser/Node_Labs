@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign in</title>
+    <link rel="stylesheet" href="/css/main.css" />
+    <link rel="stylesheet" href="/css/login.css" />
+  </head>
+  <body>
+    <header>
+      <nav>
+        <a href="/" id="logo"><p>Team Poster</p></a>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/login" class="active">Login</a></li>
+          <li><a href="/register">Register</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <form action="/login" method="post" id="login-form">
+        <h2>Sign in</h2>
+        <p><%= msg %></p>
+        <input
+          type="text"
+          name="username"
+          id="username"
+          placeholder="User Name"
+        />
+        <input
+          type="password"
+          name="password"
+          id="password"
+          placeholder="Password"
+        />
+        <button>Log in</button>
+      </form>
+    </main>
+  </body>
+</html>

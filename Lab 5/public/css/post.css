@@ -1,0 +1,111 @@
+form {
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 16px;
+  width: 100%;
+  max-width: 500px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
+  margin: 20px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+form > h2 {
+  font-weight: 800;
+  font-size: 2rem;
+  letter-spacing: 1px;
+  background: linear-gradient(90deg, #ff6600, black);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 1px 1px 4px rgba(128, 128, 128, 0.4);
+}
+
+form textarea {
+  width: 80%;
+  border: none;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
+  border-radius: 8px;
+  padding: 12px;
+  font-size: 16px;
+  resize: none;
+  min-height: 100px;
+  outline: none;
+  margin-bottom: 12px;
+  font-family: sans-serif;
+}
+
+form input[type="text"],
+form input[type="email"] {
+  width: 80%;
+  border: none;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
+  border-radius: 8px;
+  padding: 10px;
+  font-size: 15px;
+  margin-bottom: 12px;
+  outline: none;
+}
+
+form input:focus,
+form textarea:focus {
+  box-shadow: 0 0 5px darkorange;
+}
+
+form label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 4px;
+  color: #333;
+}
+
+.posts {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  padding: 2rem;
+}
+
+.post {
+  background-color: #ffffff;
+  border-radius: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  padding: 1.5rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  align-self: start;
+  font-family: sans-serif;
+}
+
+.post:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+.post h3 {
+  margin-top: 0;
+  font-size: 1.25rem;
+  /* color: #333; */
+  background: linear-gradient(90deg, #ff6600, black);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.post p {
+  margin: 0.5rem 0 0;
+  color: #555;
+}
+.post-date {
+  position: absolute;
+  bottom: 0;
+  margin-top: 1rem;
+  font-size: 0.875rem;
+  color: #888;
+}
+.post-show-btn {
+}

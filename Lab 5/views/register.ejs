@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign up</title>
+    <link rel="stylesheet" href="/css/main.css" />
+    <link rel="stylesheet" href="/css/login.css" />
+  </head>
+  <body>
+    <header>
+      <nav>
+        <a href="/" id="logo"><p>Team Poster</p></a>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/login">Login</a></li>
+          <li><a href="/register" class="active">Register</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <form action="/register" method="post" id="login-form">
+        <h2>Sign up</h2>
+        <p><%= msg %></p>
+        <input
+          type="text"
+          name="username"
+          id="username"
+          placeholder="User Name"
+        />
+        <input
+          type="password"
+          name="password"
+          id="password"
+          placeholder="Password"
+        />
+        <input type="email" name="email" id="email" placeholder="E-Mail" />
+        <button>Register</button>
+      </form>
+    </main>
+  </body>
+</html>

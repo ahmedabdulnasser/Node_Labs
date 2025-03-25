@@ -1,0 +1,28 @@
+form#login-form {
+  background-color: white;
+  width: fit-content;
+  padding: 15px;
+  border-radius: 16px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
+  height: 60vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  margin: 0 auto;
+}
+form > input,
+form > button {
+  width: 300px;
+  box-sizing: border-box;
+}
+form > h2 {
+  font-weight: 800;
+  font-size: 2.5rem;
+  letter-spacing: 1px;
+  background: linear-gradient(90deg, #ff6600, black);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 1px 1px 4px rgba(128, 128, 128, 0.4);
+}

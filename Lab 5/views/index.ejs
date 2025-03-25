@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Homepage</title>
+    <link rel="stylesheet" href="/css/main.css" />
+    <link rel="stylesheet" href="/css/post.css" />
+    <script src="/js/post.js" defer></script>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <a href="/" id="logo"><p>Team Poster</p></a>
+        <ul>
+          <li><a href="/" class="active">Home</a></li>
+          <li><a href="/login">Login</a></li>
+          <li><a href="/register">Register</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <form class="new-post-form" method="post" action="/new-post">
+        <h2>New Post</h2>
+        <input
+          name="title"
+          type="text"
+          id="post-title"
+          placeholder="Post Title"
+        />
+        <textarea
+          name="desc"
+          id="post-desc"
+          rows="0"
+          cols="50"
+          placeholder="What are you currently thinking of..?"
+        ></textarea>
+        <button>Post now!</button>
+      </form>
+
+      <section class="posts">
+        <% let isExpanded= false; %> <% allPosts.forEach((post, index) => { %>
+        <div class="post" data-index="<%= index %>">
+          <h3><%=post.title %></h3>
+          <p class="post-snippet"><%= post.snippet %></p>
+          <p class="post-body"><%= post.body %></p>
+          <button class="post-show-btn">Show more</button>
+          <p>Poster: <%= post.postedByUsername %></p>
+          <span class="post-date">
+            <%= new Date(post.createdAt).toLocaleDateString() %> <%= new
+            Date(post.createdAt).toLocaleTimeString([], { hour: '2-digit',
+            minute: '2-digit' }) %>
+          </span>
+        </div>
+        <% }) %>
+      </section>
+    </main>
+  </body>
+</html>
