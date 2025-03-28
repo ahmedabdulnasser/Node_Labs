@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chatroom</title>
+    <link rel="stylesheet" href="/css/main.css" />
+    <link rel="stylesheet" href="/css/chat.css" />
+  </head>
+
+  <body>
+    <header>
+      <nav>
+        <a href="/" id="logo"><p>Team Poster</p></a>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/chat" class="active">Chat</a></li>
+          <li><a href="/logout">Logout</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <div id="chatbox">
+        <div id="msg-container"></div>
+        <form action="" id="send-container">
+          <input type="text" id="msg-input" />
+          <button type="submit" id="send-btn">Send</button>
+        </form>
+      </div>
+      <div id="user-container"></div>
+    </main>
+
+    <script src="http://localhost:3000/socket.io/socket.io.js"></script>
+    <script src="/js/socket-frontend.js"></script>
+  </body>
+</html>

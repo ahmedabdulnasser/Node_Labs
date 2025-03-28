@@ -7,6 +7,9 @@ const mongoose = require("mongoose");
 const port = 3000;
 const config = require("config");
 const db = config.get("mongoURI");
+const setupSocket = require("./util/socket");
+const http = require("http");
+const httpServer = http.createServer(app);
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json({ extended: true }));
@@ -22,6 +25,10 @@ mongoose
   })
   .catch((err) => console.error(err));
 
-app.listen(port, () => {
+setupSocket(httpServer);
+
+module.exports = { port: port };
+
+httpServer.listen(port, () => {
   console.log("Server has started at http://localhost:" + port);
 });

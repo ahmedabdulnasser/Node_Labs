@@ -5,9 +5,10 @@ const User = require("../models/User");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const { verifyToken } = require("../util/auth");
+const config = require("config");
 
 router.get("/", verifyToken, (req, res, next) => {
-  jwt.verify(req.token, "secretKey123", (err, authData) => {
+  jwt.verify(req.token, config.get("jwtSecretKey"), (err, authData) => {
     if (err) {
       res.redirect("/login");
     } else {
@@ -25,6 +26,20 @@ router.get("/login", (req, res, next) => {
 router.get("/register", (req, res, next) => {
   res.render("register.ejs", { msg: "" });
 });
+router.get("/logout", (req, res, next) => {
+  res.clearCookie("token");
+  res.redirect("/login");
+});
+
+router.get("/chat", verifyToken, (req, res, next) => {
+  jwt.verify(req.token, config.get("jwtSecretKey"), (err, authData) => {
+    if (err) {
+      res.redirect("/login");
+    } else {
+      res.render("chat.ejs");
+    }
+  });
+});
 
 router.post("/login", async (req, res, next) => {
   const user = await User.findOne({ username: req.body.username }).then();
@@ -35,7 +50,7 @@ router.post("/login", async (req, res, next) => {
       {
         user: user,
       },
-      "secretKey123",
+      config.get("jwtSecretKey"),
       (err, token) => {
         if (err) throw err;
         res.cookie("token", token, { httpOnly: true });
@@ -78,7 +93,7 @@ router.post("/register", async (req, res, next) => {
 });
 
 router.post("/new-post", verifyToken, (req, res, next) => {
-  jwt.verify(req.token, "secretKey123", (err, authData) => {
+  jwt.verify(req.token, config.get("jwtSecretKey"), (err, authData) => {
     if (err) {
       res.sendStatus(403);
     } else {
